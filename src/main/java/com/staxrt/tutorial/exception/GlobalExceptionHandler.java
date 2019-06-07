@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -46,8 +47,14 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(ResourceNotFoundException.class)
   public ResponseEntity<?> resourceNotFoundException(
       ResourceNotFoundException ex, WebRequest request) {
-    ErrorResponse errorDetails =
-        new ErrorResponse(new Date(), HttpStatus.NOT_FOUND.toString(), ex.getMessage(), request.getDescription(false));
+
+    ErrorResponse errorDetails = ErrorResponse.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.NOT_FOUND.toString())
+            .message(ex.getMessage())
+            .details(request.getDescription(false))
+            .build();
+
     return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
   }
 
@@ -60,8 +67,35 @@ public class GlobalExceptionHandler {
    */
   @ExceptionHandler(Exception.class)
   public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
-    ErrorResponse errorDetails =
-        new ErrorResponse(new Date(), HttpStatus.INTERNAL_SERVER_ERROR.toString() ,ex.getMessage(), request.getDescription(false));
+
+    ErrorResponse errorDetails = ErrorResponse.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+            .message(ex.getMessage())
+            .details(request.getDescription(false))
+            .build();
+
     return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
   }
+
+  /**
+   * 포스트 API 에러 핸들러
+   * @param ex
+   * @param request
+   * @return
+   */
+  @ExceptionHandler(PostProcessingException.class)
+  public ResponseEntity<?> postProcessingException(
+          PostProcessingException ex, WebRequest request){
+
+    ErrorResponse errorDetails = ErrorResponse.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.NOT_FOUND.toString())
+            .message(ex.getMessage())
+            .details(request.getDescription(true))
+            .build();
+
+    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+  }
+
 }

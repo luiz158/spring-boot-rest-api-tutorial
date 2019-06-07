@@ -39,7 +39,7 @@ import java.util.Map;
  * @author Givantha Kalansuriya
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api")
 public class UserController {
 
   @Autowired
@@ -69,6 +69,7 @@ public class UserController {
         userRepository
             .findById(userId)
             .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
+
     return ResponseEntity.ok().body(user);
   }
 

@@ -20,104 +20,40 @@
 
 package com.staxrt.tutorial.exception;
 
-import java.util.Date;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /**
  * The type Error response.
  *
  * @author Givantha Kalansuriya
  */
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ErrorResponse {
 
-  private Date timestamp;
-  private String status;
-  private String message;
-  private String details;
+    private LocalDateTime timestamp;
+    private String status;
+    private String message;
+    private String details;
 
-  /**
-   * Instantiates a new Error response.
-   *
-   * @param timestamp the timestamp
-   * @param status the status
-   * @param message the message
-   * @param details the details
-   */
-  public ErrorResponse(Date timestamp, String status, String message, String details) {
-    this.timestamp = timestamp;
-    this.status = status;
-    this.message = message;
-    this.details = details;
-  }
-
-  /**
-   * Gets timestamp.
-   *
-   * @return the timestamp
-   */
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
-  /**
-   * Sets timestamp.
-   *
-   * @param timestamp the timestamp
-   */
-  public void setTimestamp(Date timestamp) {
-    this.timestamp = timestamp;
-  }
-
-  /**
-   * Gets status.
-   *
-   * @return the status
-   */
-  public String getStatus() {
-    return status;
-  }
-
-  /**
-   * Sets status.
-   *
-   * @param status the status
-   */
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  /**
-   * Gets message.
-   *
-   * @return the message
-   */
-  public String getMessage() {
-    return message;
-  }
-
-  /**
-   * Sets message.
-   *
-   * @param message the message
-   */
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  /**
-   * Gets details.
-   *
-   * @return the details
-   */
-  public String getDetails() {
-    return details;
-  }
-
-  /**
-   * Sets details.
-   *
-   * @param details the details
-   */
-  public void setDetails(String details) {
-    this.details = details;
-  }
+    /**
+     * Instantiates a new Error response.
+     *
+     * @param timestamp the timestamp       : 발생시각
+     * @param status    the status          : 상태코드
+     * @param message   the message         : 에러 메시지
+     * @param details   the details         : 에러 상세 내역
+     */
+    @Builder
+    public ErrorResponse(LocalDateTime timestamp, String status, String message, String details) {
+        this.timestamp = timestamp;
+        this.status = status;
+        this.message = message;
+        this.details = details;
+    }
 }

@@ -80,9 +80,9 @@ public class GlobalExceptionHandler {
 
   /**
    * 포스트 API 에러 핸들러
-   * @param ex
-   * @param request
-   * @return
+   * @param ex        :: 예외
+   * @param request   :: 요청 객체
+   * @return          :: 응답 엔티티 객체
    */
   @ExceptionHandler(PostProcessingException.class)
   public ResponseEntity<?> postProcessingException(

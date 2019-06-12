@@ -1,13 +1,15 @@
-package com.staxrt.tutorial.model;
+package com.staxrt.tutorial.post;
 
 import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="post")
+@Getter
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class Post {
 
@@ -15,8 +17,11 @@ public class Post {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @Column(name="content")
     private String content;
 
+    @Builder
+    public Post(String content){
+        this.content = content;
+    }
 }

@@ -1,12 +1,9 @@
-package com.staxrt.tutorial.controller;
+package com.staxrt.tutorial.post;
 
+import com.staxrt.tutorial.exception.PostProcessingException;
 import com.staxrt.tutorial.exception.ResourceNotFoundException;
-import com.staxrt.tutorial.model.Post;
-import com.staxrt.tutorial.model.User;
-import com.staxrt.tutorial.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,19 +18,23 @@ import java.util.List;
 @Slf4j
 public class PostController {
 
+    private final PostService postService;
     private final PostRepository postRepository;
 
     @PostMapping("/posts")
-    public ResponseEntity<Post> createPost(@Valid @RequestBody Post post, BindingResult result) {
+    public ResponseEntity<Post> createPost(@Valid @RequestBody PostRequestDto dto,
+                                           BindingResult result) {
 
         // validation 오류 발생
         if(result.hasErrors()){
-            log.debug("에러발생");
+            throw new PostProcessingException("포스터 등록에 관한 데이터가 누락되었습니다.");
         }
 
-        final Post savedPost = postRepository.save(post);
+        log.debug(dto.toString());
 
-        return ResponseEntity.ok(savedPost);
+        final Post savedPost = postService.save(dto);
+
+        return ResponseEntity.ok().body(savedPost);
     }
 
     @GetMapping("/posts")
@@ -45,9 +46,7 @@ public class PostController {
             throw new ResourceNotFoundException("All Post not found");
         }
 
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .body(posts);
+        return ResponseEntity.ok().body(posts);
     }
 
 

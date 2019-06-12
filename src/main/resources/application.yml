@@ -30,6 +30,13 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
+
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    com.staxrt.tutorial: DEBUG
+

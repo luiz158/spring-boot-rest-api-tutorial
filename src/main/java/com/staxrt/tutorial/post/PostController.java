@@ -1,11 +1,7 @@
-package com.staxrt.tutorial.controller;
+package com.staxrt.tutorial.post;
 
 import com.staxrt.tutorial.exception.PostProcessingException;
 import com.staxrt.tutorial.exception.ResourceNotFoundException;
-import com.staxrt.tutorial.model.Post;
-import com.staxrt.tutorial.post.PostRequestDto;
-import com.staxrt.tutorial.post.PostService;
-import com.staxrt.tutorial.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -38,9 +34,7 @@ public class PostController {
 
         final Post savedPost = postService.save(dto);
 
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .body(savedPost);
+        return ResponseEntity.ok().body(savedPost);
     }
 
     @GetMapping("/posts")
@@ -52,9 +46,7 @@ public class PostController {
             throw new ResourceNotFoundException("All Post not found");
         }
 
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .body(posts);
+        return ResponseEntity.ok().body(posts);
     }
 
 

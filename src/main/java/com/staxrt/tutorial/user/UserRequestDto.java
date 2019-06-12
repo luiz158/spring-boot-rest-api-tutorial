@@ -1,19 +1,23 @@
 package com.staxrt.tutorial.user;
 
-import com.staxrt.tutorial.model.User;
+import lombok.Getter;
 
-public class UserRequestDto {
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
-    private String firstName;
-    private String lastName;
+@Getter
+public class UserRequestDto{
+
+    @NotBlank
+    private String name;
+
+    @NotBlank
     private String email;
 
     User toEntity(){
         return User.builder()
-                .firstName(firstName)
-                .lastName(lastName)
+                .name(name)
                 .email(email)
                 .build();
     }
-
 }

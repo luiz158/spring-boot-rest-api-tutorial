@@ -18,52 +18,50 @@
  *
  */
 
-package com.staxrt.tutorial.model;
+package com.staxrt.tutorial.user;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.UUID;
 
 
 @Entity
 @Table(name = "users")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+@JsonSerialize
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "uid", length = 60)
+    private String uid;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "name", nullable = false, length = 20)
+    private String name;
 
-    @Column(name = "email_address", nullable = false)
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "created_at", nullable = false)
-//    private Date createdAt;
-//
-//    @UpdateTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "updated_at", nullable = false)
-//    private Date updatedAt;
-
     @Builder
-    public User(String firstName, String lastName, String email){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String email){
+        this.uid = UUID.randomUUID().toString();
+        this.name = name;
         this.email = email;
     }
 
+    void updateName(String name){
+        this.name = name;
+    }
+
+    void updateEmail(String email){
+        this.email = email;
+    }
 }

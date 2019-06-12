@@ -1,7 +1,6 @@
 package com.staxrt.tutorial.user;
 
 import com.staxrt.tutorial.exception.ResourceNotFoundException;
-import com.staxrt.tutorial.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

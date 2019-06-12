@@ -1,4 +1,4 @@
-package com.staxrt.tutorial.repository;
+package com.staxrt.tutorial.user;
 
 import com.staxrt.tutorial.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

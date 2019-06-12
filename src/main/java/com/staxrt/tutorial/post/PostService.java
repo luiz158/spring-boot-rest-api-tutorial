@@ -1,7 +1,5 @@
 package com.staxrt.tutorial.post;
 
-import com.staxrt.tutorial.model.Post;
-import com.staxrt.tutorial.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

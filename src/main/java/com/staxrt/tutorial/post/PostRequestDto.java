@@ -1,6 +1,5 @@
 package com.staxrt.tutorial.post;
 
-import com.staxrt.tutorial.model.Post;
 import lombok.Getter;
 import lombok.ToString;
 

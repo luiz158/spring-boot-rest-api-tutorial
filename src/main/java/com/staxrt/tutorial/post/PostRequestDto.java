@@ -13,7 +13,7 @@ public class PostRequestDto implements Serializable {
     @NotBlank
     String content;
 
-    Post toEntity(){
+    Post toEntity() {
         return Post.builder()
                 .content(content)
                 .build();

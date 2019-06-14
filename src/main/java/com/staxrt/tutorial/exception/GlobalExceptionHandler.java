@@ -37,65 +37,65 @@ import java.util.Date;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-  /**
-   * Resource not found exception response entity.
-   *
-   * @param ex the ex
-   * @param request the request
-   * @return the response entity
-   */
-  @ExceptionHandler(ResourceNotFoundException.class)
-  public ResponseEntity<?> resourceNotFoundException(
-      ResourceNotFoundException ex, WebRequest request) {
+    /**
+     * Resource not found exception response entity.
+     *
+     * @param ex      the ex
+     * @param request the request
+     * @return the response entity
+     */
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> resourceNotFoundException(
+            ResourceNotFoundException ex, WebRequest request) {
 
-    ErrorResponse errorDetails = ErrorResponse.builder()
-            .timestamp(LocalDateTime.now())
-            .status(HttpStatus.NOT_FOUND.toString())
-            .message(ex.getMessage())
-            .details(request.getDescription(false))
-            .build();
+        ErrorResponse errorDetails = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.NOT_FOUND.toString())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
-    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
-  }
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
 
-  /**
-   * Globle excpetion handler response entity.
-   *
-   * @param ex the ex
-   * @param request the request
-   * @return the response entity
-   */
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
+    /**
+     * Globle excpetion handler response entity.
+     *
+     * @param ex      the ex
+     * @param request the request
+     * @return the response entity
+     */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
 
-    ErrorResponse errorDetails = ErrorResponse.builder()
-            .timestamp(LocalDateTime.now())
-            .status(HttpStatus.INTERNAL_SERVER_ERROR.toString())
-            .message(ex.getMessage())
-            .details(request.getDescription(false))
-            .build();
+        ErrorResponse errorDetails = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
-    return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
-  /**
-   * 포스트 API 에러 핸들러
-   * @param ex        :: 예외
-   * @param request   :: 요청 객체
-   * @return          :: 응답 엔티티 객체
-   */
-  @ExceptionHandler(PostProcessingException.class)
-  public ResponseEntity<?> postProcessingException(
-          PostProcessingException ex, WebRequest request){
+    /**
+     * 포스트 API 에러 핸들러
+     *
+     * @param ex      :: 예외
+     * @param request :: 요청 객체
+     * @return :: 응답 엔티티 객체
+     */
+    @ExceptionHandler(PostProcessingException.class)
+    public ResponseEntity<?> postProcessingException(
+            PostProcessingException ex, WebRequest request) {
 
-    ErrorResponse errorDetails = ErrorResponse.builder()
-            .timestamp(LocalDateTime.now())
-            .status(HttpStatus.NOT_FOUND.toString())
-            .message(ex.getMessage())
-            .details(request.getDescription(true))
-            .build();
+        ErrorResponse errorDetails = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.NOT_FOUND.toString())
+                .message(ex.getMessage())
+                .details(request.getDescription(true))
+                .build();
 
-    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
-  }
-
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
 }

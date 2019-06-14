@@ -35,7 +35,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonSerialize
-public class User{
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,17 +51,17 @@ public class User{
     private String email;
 
     @Builder
-    public User(String name, String email){
+    public User(String name, String email) {
         this.uid = UUID.randomUUID().toString();
         this.name = name;
         this.email = email;
     }
 
-    void updateName(String name){
+    void updateName(String name) {
         this.name = name;
     }
 
-    void updateEmail(String email){
+    void updateEmail(String email) {
         this.email = email;
     }
 }

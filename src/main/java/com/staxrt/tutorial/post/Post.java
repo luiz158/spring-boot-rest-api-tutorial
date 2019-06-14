@@ -8,20 +8,24 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="post")
+@Table(name = "post")
 @Getter
-@NoArgsConstructor(access= AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="content")
+    @Column(name = "content")
     private String content;
 
     @Builder
-    public Post(String content){
+    public Post(String content) {
+        this.content = content;
+    }
+
+    void updateContent(String content){
         this.content = content;
     }
 }

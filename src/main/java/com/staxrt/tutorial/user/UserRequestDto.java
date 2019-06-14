@@ -3,10 +3,9 @@ package com.staxrt.tutorial.user;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 
 @Getter
-public class UserRequestDto{
+public class UserRequestDto {
 
     @NotBlank
     private String name;
@@ -14,7 +13,7 @@ public class UserRequestDto{
     @NotBlank
     private String email;
 
-    User toEntity(){
+    User toEntity() {
         return User.builder()
                 .name(name)
                 .email(email)

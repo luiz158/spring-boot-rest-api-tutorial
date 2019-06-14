@@ -41,6 +41,19 @@ public class UserController {
     private final UserService userService;
 
     /**
+     * 유저를 생성한다
+     *
+     * @param dto :: 유저 요청 객체
+     * @return :: 유저
+     */
+    @PostMapping("/users")
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDto dto) {
+
+        return new ResponseEntity(userService.save(dto), HttpStatus.OK);
+
+    }
+
+    /**
      * Get all users list.
      *
      * @return the list
@@ -49,18 +62,6 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() {
 
         return new ResponseEntity(userService.findAll(), HttpStatus.OK);
-
-    }
-
-    /**
-     * 유저를 생성한다
-     * @param dto   :: 유저 요청 객체
-     * @return      :: 유저
-     */
-    @PostMapping("/users")
-    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequestDto dto) {
-
-        return new ResponseEntity(userService.save(dto), HttpStatus.OK);
 
     }
 
@@ -81,6 +82,7 @@ public class UserController {
 
     /**
      * 유저 정보를 업데이트 한다.
+     *
      * @param userId
      * @param dto
      * @return

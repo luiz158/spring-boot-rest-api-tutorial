@@ -12,11 +12,11 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    User save(UserRequestDto dto){
+    User save(UserRequestDto dto) {
         return userRepository.save(dto.toEntity());
     }
 
-    List<User> findAll(){
+    List<User> findAll() {
 
         List<User> users = userRepository.findAll();
 

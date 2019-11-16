@@ -6,8 +6,7 @@
 	<groupId>com.staxrt.tutorial</groupId>
 	<artifactId>spring-boot-rest-api-tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-<!--	<packaging>jar</packaging>-->
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>spring-boot-rest-api-tutorial</name>
 	<description>Sample REST CRUD API project using Spring Boot, Mysql, JPA and Hibernate</description>
@@ -63,21 +62,10 @@
 	</dependencies>
 
 	<build>
-		<finalName>spring-rest-test</finalName>
 		<plugins>
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--			</plugin>-->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<outputDirectory>target</outputDirectory>
-					<warName>ROOT</warName>
-				</configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
